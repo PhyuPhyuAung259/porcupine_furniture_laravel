@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!--bootstrap CDN-->
 </head>
+
 <body>
 
     <!-- Header Start -->
@@ -26,37 +28,32 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <div class="logo"><a href="index.html"><h1 class="text-success">Procupine</h1></a></div>
+                <div class="logo"><a href="index.html">
+                        <h1>Procupine</h1>
+                    </a></div>
 
                 <ul class="links">
                     <li><a href="#" id="first">Home</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="{{ url ('/show_product') }}">Products</a></li>
+                    <li><a href="{{ url('/show_product') }}">Products</a></li>
                     <li><a href="#service">Service</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#review">Reviews</a></li>
                     @if (Route::has('login'))
-                    @auth
-                         
-                    @else
-                        <li><a href="{{ route('login') }}">LogIn</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @endauth
+                        @auth
+                        @else
+                            <li><a href="{{ route('login') }}">LogIn</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @endauth
                     @endif
                 </ul>
             </div>
-            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            {{-- <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
             <form action="#" class="search-box">
                 <input type="text" placeholder="Search" required>
                 <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-            </form>
+            </form> --}}
 
         </nav>
     </div>
     <!-- Header End -->
-
-
-
-
-
-     

@@ -55,8 +55,9 @@ nav .content .links {
     margin-left: 80px;
     display: flex;
 }
-nav .content .logo a img {
+nav .content .logo a{
     width: 150px;
+    color: #338b6f;
 }
 nav .content .links li {
     list-style: none;
