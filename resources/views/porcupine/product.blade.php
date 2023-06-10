@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">{{ $data->name }}</h4>
                                 <p class="card-text">{{ Str::limit($data->description, 100) }}</p>
-                                @if ($data->discount_price != null)
+                                {{-- @if ($data->discount_price != null)
                                     <p class="text-decoration-line-through card-text  "> Price - <span>
                                             ${{ $data->price }} </span>
                                     </p>
@@ -37,11 +37,12 @@
                                         ${{ $data->discount_price }} </p>
                                 @else
                                     <p class="card-text  "> Price - ${{ $data->price }} </p>
-                                @endif
+                                @endif --}}
 
                                 <a href="{{ url('product_detail/' . $data->id) }}" class="btn btn-success col-5">See
                                     More</a>
-                                <a href="{{ url('/addtocart') }}" class="btn btn-outline-success col-6">Add to cart</a>
+
+
 
 
                             </div>

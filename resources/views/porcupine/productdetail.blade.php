@@ -12,23 +12,36 @@
         <div class="container">
             <div class="row py-3">
                 <div class="col-lg-6 col-sm-12">
-                    <h4>{{ $data->name }}</h4>
+
                     <img src="{{ asset('uploads/product/' . $data->image) }}" alt="">
 
                 </div>
                 <div class="col-lg-6 col-sm-12 d-flex flex-column justify-content-center">
-                    @if ($data->discount_price != null)
-                        <h5> Price - <span class="text-decoration-line-through card-text ">
-                                ${{ $data->price }} </span>
-                        </h5>
-                        <h5 class=" card-text text-danger">Discount Price -
-                            ${{ $data->discount_price }} </h5>
-                    @else
-                        <h5 class="card-text  "> Price - ${{ $data->price }} </h5>
-                    @endif
-                    <h4>About product</h4>
-                    <p>{{ $data->description }}</p>
-                    <a href="{{ url('/addtocart') }}" class="btn btn-success col-3">Add to cart</a>
+                    <form action="{{ url('addtocart/' . $data->id) }}" method="POST">
+                        @csrf
+                        <h4>{{ $data->name }}</h4>
+                        @if ($data->discount_price != null)
+                            <p> <span class="text-decoration-line-through card-text ">
+                                    ${{ $data->price }} </span>
+                            </p>
+                            <p class=" card-text   fw-bolder">
+                                ${{ $data->discount_price }} </p>
+                        @else
+                            <h5 class="card-text  "> Price - ${{ $data->price }} </h5>
+                        @endif
+                        <p class="text-secondary fw-light">(Additional tax may apply on checkout)</p>
+                        <div class="row">
+
+                            <input type="number" id="quantity" name="quantity" min="1" max="5"
+                                class="col-3 mb-2 mx-2" placeholder="Quantity">
+                            <button type="submit" class="btn btn-outline-success col-3 mb-1">Add to cart</button>
+
+                        </div>
+
+                        <h4>Product Details</h4>
+                        <p>{{ $data->description }}</p>
+
+                    </form>
                 </div>
             </div>
 

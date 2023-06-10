@@ -41,6 +41,9 @@
                     <li><a href="#review">Reviews</a></li>
                     @if (Route::has('login'))
                         @auth
+                            <li><a href="{{ route('show_cart') }}">
+                                    <img src="{{ asset('images/addtocart.png') }}" class="w-50 h-50" alt="">
+                                </a></li>
                         @else
                             <li><a href="{{ route('login') }}">LogIn</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
