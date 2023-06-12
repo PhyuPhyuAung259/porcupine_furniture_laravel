@@ -33,7 +33,7 @@
                     </a></div>
 
                 <ul class="links">
-                    <li><a href="#" id="first">Home</a></li>
+                    <li><a href="{{ url('/') }}" id="first">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="{{ url('/show_product') }}">Products</a></li>
                     <li><a href="#service">Service</a></li>

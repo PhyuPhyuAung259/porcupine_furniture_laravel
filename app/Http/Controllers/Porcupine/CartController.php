@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     //show cart in blade
-    public function show_cart(){
+    public function show_cart(Request $request){
         $id=Auth::user()->id;
+        //dd($id);
         $cart=Cart::where('user_id',$id)->get();
-         
+        //dd($cart); 
         return view('porcupine.cart',compact('cart'));
     }
     //save cart data to database
@@ -27,6 +28,7 @@ class CartController extends Controller
         $product=product::find($id);
         $cart=Cart::where('user_id',$user->id)->where('product_id',$id)->get();
         if($cart != null){
+            
             foreach ($cart as $data) {
                 $data->quantity=$data->quantity + $request->quantity;
                 if ($product->discount_price != null) {
@@ -59,8 +61,9 @@ class CartController extends Controller
         }
         $cart->image=$product->image;
         $cart->product_id=$product->id;
+         
         $cart->save();
-        return redirect()->back();
+        return redirect('/confirm_checkout');
 
     }
     //delete cart
@@ -72,19 +75,19 @@ class CartController extends Controller
     }
 
     //checkout
-    public function checkout(Request $request,$id){
-        $cart=Cart::where('user_id',$id)->get();
+    public function checkout(Request $request){
+       
          //dd($checkout_cart);
          $user=Auth::user();
+         $cart=Cart::where('user_id',$user->id)->get();
         //  dd($cart);
         return view('porcupine.checkout',compact('cart','user'));
     }
+
     //confirm_checkout
     public function confirm_checkout(Request $request){
         $request->validate([
-            'payment'=>['required'],
-            
-             
+            'payment'=>['required'], 
         ]);
         $user=Auth::user();
         $cart=Cart::where('user_id',$user->id)->get();
@@ -115,7 +118,7 @@ class CartController extends Controller
             $order_detail->quantity=$data->quantity;  
             $order_detail->total_price=$data->total_price;  
             $order_detail->order_id=$order->id;  
-            
+            $order_detail->save();
             
             $product = Product::where('name', $order_detail->product_name)->first();
             // Use `first()` instead of `get()` to retrieve a single product
@@ -125,11 +128,12 @@ class CartController extends Controller
                 $product->quantity = $quantity;
                 $product->save();
             }
-            $order_detail->save();
-            return back()->with('message','Thank you for choosing our furniture. We will send a confirmation email once we have checked your order.');
             
+             
              
         }
         
+        return back()->with('message','Thank you for choosing our furniture. We will send a confirmation email once we have checked your order.');
+            
     }
 }

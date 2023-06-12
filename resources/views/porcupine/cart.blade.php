@@ -1,10 +1,9 @@
 @include('porcupine.header')
 <?php $totalgrandprice = 0; ?>
-@if ($cart === null)
-    <h5 class="text-center text-secondary"> You have no items in your shopping cart.</h5>
-@else
-    <div class="row">
-        <div class="col-lg-10 col-12  ">
+
+<div class="row">
+    <div class="col-lg-12 col-12  ">
+        @if (isset($cart))
             <table class="table my-3 mx-3">
                 <thead>
                     <th>Product_Name</th>
@@ -42,7 +41,7 @@
                             <h5><?php echo $totalgrandprice; ?></h5>
                         </td>
                         <td>
-                            <a href="{{ url('checkout/' . $data->user_id) }}" class="btn btn-success">Check
+                            <a href="{{ url('checkout/') }}" class="btn btn-success">Check
                                 Out</a>
                         </td>
                         <td>
@@ -51,9 +50,17 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        @else
+            <div class="text-center m-5">
+                <h5 class="text-center text-danger">"Your cart is empty. Start shopping now!"</h5>
+                <a href="{{ url('/show_product') }}" class="btn btn-success">Continue Shopping</a>
+            </div>
+
+        @endif
+
     </div>
-@endif
+</div>
+
 
 
 @include('porcupine.footer')

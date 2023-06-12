@@ -22,14 +22,17 @@ use App\Http\Controllers\Porcupine\CartController;
 Route::get('/', function () {
     return view('porcupine.index');
 });
-Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
+
+Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect')->middleware('auth','verified');
 
 //admin
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/view_category',[AdminController::class,'view_category'])->name('view');
+Route::get('/order_list',[AdminController::class,'order_list'])->name('order_list');
+Route::get('/orderdetail_list/{id}',[AdminController::class,'orderdetail_list'])->name('orderdetail_list');
+Route::get('/order_confirm/{id}',[AdminController::class,'order_confirm'])->name('order_confirm');
 Route::resource('/categoryprocess',CategoryController::class);
 Route::resource('/productprocess',ProductController::class);
 //admin
@@ -49,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/show_cart',[CartController::class,'show_cart'])->name('show_cart');
     Route::post('/addtocart/{id}',[CartController::class,'add_to_cart'])->name('addtocart');
     Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');
-    Route::get('/checkout/{id}', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
     Route::post('/confirm_checkout', [CartController::class, 'confirm_checkout'])->name('confirm_checkout');
 
 

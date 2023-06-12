@@ -31,10 +31,20 @@
                         @endif
                         <p class="text-secondary fw-light">(Additional tax may apply on checkout)</p>
                         <div class="row">
-
-                            <input type="number" id="quantity" name="quantity" min="1" max="5"
-                                class="col-3 mb-2 mx-2" placeholder="Quantity">
-                            <button type="submit" class="btn btn-outline-success col-3 mb-1">Add to cart</button>
+                            @if ($data->quantity <= 5 && $data->quantity > 0)
+                                <h6 class="text-danger"> This product left only {{ $data->quantity }} . </h6>
+                                <input type="number" id="quantity" name="quantity" min="1" max="5"
+                                    class="col-3 mb-2 mx-2" placeholder="Quantity">
+                                <button type="submit" class="btn btn-outline-success col-3 mb-1">Add to cart</button>
+                            @endif
+                            @if ($data->quantity == 0)
+                                <h6 class="text-danger">This product is out of stock</h5>
+                            @endif
+                            @if ($data->quantity == 0)
+                                <input type="number" id="quantity" name="quantity" min="1" max="5"
+                                    class="col-3 mb-2 mx-2" placeholder="Quantity">
+                                <button type="submit" class="btn btn-outline-success col-3 mb-1">Add to cart</button>
+                            @endif
 
                         </div>
 
