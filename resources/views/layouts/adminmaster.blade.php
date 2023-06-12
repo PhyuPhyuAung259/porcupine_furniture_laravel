@@ -127,23 +127,18 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
+                    <a class="nav-link" href="{{ url('order_list') }}">
                         <span class="menu-icon">
-                            <i class="mdi mdi-laptop"></i>
+                            <i class="mdi mdi-playlist-play"></i>
                         </span>
                         <span class="menu-title">Order</span>
-                        <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="{{ url('order_list') }}">Order List
-                                </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{ url('confirm_order_list') }}">Confirm
-                                    Order List</a></li>
-                        </ul>
-                    </div>
                 </li>
+
+
+
+
+
             </ul>
         </nav>
         <!-- partial -->
