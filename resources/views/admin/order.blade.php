@@ -61,9 +61,23 @@
                                 <td>{{ $data->address }}</td>
                                 <td>{{ $data->order_date }}</td>
                                 <td>{{ $data->payment_method }}</td>
-                                <td><img src="uploads/payment_image/{{ $data->payment_image }}" alt="" width="100px"
-                                        height="100px">
-                                </td>
+                                @if ($data->payment_method == 'COD')
+                                    <td>{{ $data->payment_image }}</td>
+                                @else
+                                    <td>
+                                        <a href="uploads/payment_image/{{ $data->payment_image }}" class="lsb-preview">
+                                            <img src="uploads/payment_image/{{ $data->payment_image }}" alt=""
+                                                width="100px" height="100px">
+                                        </a>
+                                        <script>
+                                            $(window).load(function() {
+                                                $.fn.lightspeedBox();
+                                            });
+                                        </script>
+
+                                    </td>
+                                @endif
+
                                 <td><a href="{{ url('orderdetail_list/' . $data->id) }}"
                                         class="btn btn-info">Order_detail</a>
                                 </td>

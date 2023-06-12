@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('src/lsb.css') }}" />
+    <script src="{{ asset('jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('src/lsb.js') }}"></script>
 </head>
 
 <body>
