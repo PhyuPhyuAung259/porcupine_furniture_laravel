@@ -1,7 +1,7 @@
 @extends('layouts.adminmaster')
 
 @section('admin_content')
-    <div class=" col-12 px-3  ">
+    <div class="col-lg-12 px-3  ">
         @if (isset($orderdetail_list))
             <h2 class="text-center py-2">Order Detail List</h2>
         @else
@@ -9,9 +9,9 @@
         @endif
 
         <!--show Product data from db-->
-        <div class=" ">
+        <div class="container-fluide ">
             @if (isset($orderdetail_list))
-                <table class="table center ">
+                <table class="table center">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -38,18 +38,19 @@
 
                 </table>
             @else
-                <table class="table center ">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CustomerName</th>
-                            <th>Total Amount</th>
+                            <th>Name</th>
+                            <th>Amount</th>
                             <th>Address</th>
                             <th>Order_date</th>
-                            <th>Payment Method</th>
-                            <th>Payment Transcation</th>
-                            <th>Order Details</th>
+                            <th>Payment <br> Method</th>
+                            <th>Payment <br> Transcation</th>
+                            <th>OrderDetails</th>
                             <th>Order_State</th>
+                            <th>Send Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,6 +83,8 @@
                                         class="btn btn-info">Order_detail</a>
                                 </td>
                                 <td><a href="{{ url('order_confirm/' . $data->id) }}" class="btn btn-info">Comfirm</a>
+                                </td>
+                                <td><a href="{{ url('order_confirm/' . $data->id) }}" class="btn btn-info">Send Mail</a>
                                 </td>
 
                             </tr>

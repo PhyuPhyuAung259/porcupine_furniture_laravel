@@ -59,7 +59,8 @@ Route::middleware('auth')->group(function () {
 });
 
  
-
+//language switcher
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
  
 
  
