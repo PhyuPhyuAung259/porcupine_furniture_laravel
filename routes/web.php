@@ -33,6 +33,9 @@ Route::get('/dashboard', function () {
 Route::get('/order_list',[AdminController::class,'order_list'])->name('order_list');
 Route::get('/orderdetail_list/{id}',[AdminController::class,'orderdetail_list'])->name('orderdetail_list');
 Route::get('/order_confirm/{id}',[AdminController::class,'order_confirm'])->name('order_confirm');
+Route::get('/send_email/{id}', [AdminController::class, 'send_email'])->name('send_email');
+Route::post('/send_user_email/{id}', [AdminController::class, 'send_user_email'])->name('send_user_email');
+
 Route::resource('/categoryprocess',CategoryController::class);
 Route::resource('/productprocess',ProductController::class);
 //admin
@@ -54,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('delete_cart');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
     Route::post('/confirm_checkout', [CartController::class, 'confirm_checkout'])->name('confirm_checkout');
-
+    
 
 });
 

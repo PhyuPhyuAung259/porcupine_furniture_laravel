@@ -1,7 +1,7 @@
 @extends('layouts.adminmaster')
 
 @section('admin_content')
-    <div class=" col-12 px-3  ">
+    <div class=" col-12 px-2">
         @if (isset($orderdetail_list))
             <h2 class="text-center py-2">Order Detail List</h2>
         @else
@@ -42,14 +42,15 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CustomerName</th>
+                            <th>Name</th>
                             <th>Total Amount</th>
                             <th>Address</th>
                             <th>Order_date</th>
-                            <th>Payment Method</th>
-                            <th>Payment Transcation</th>
+                            <th>Payment <br> Method</th>
+                            <th>Payment <br> Transcation</th>
                             <th>Order Details</th>
                             <th>Order_State</th>
+                            <th>Send Email</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,9 +80,11 @@
                                 @endif
 
                                 <td><a href="{{ url('orderdetail_list/' . $data->id) }}"
-                                        class="btn btn-info">Order_detail</a>
+                                        class="btn btn-info">OrderDetail</a>
                                 </td>
                                 <td><a href="{{ url('order_confirm/' . $data->id) }}" class="btn btn-info">Comfirm</a>
+                                </td>
+                                <td><a href="{{ url('send_email/' . $data->id) }}" class="btn btn-info">SendEmail</a>
                                 </td>
 
                             </tr>

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use App\Models\order;
 use App\Models\order_detail;
+use App\Notifications\SendEmailNotification;
+
 class AdminController extends Controller
 {
     public function  order_list(Request $request){
@@ -23,6 +26,24 @@ class AdminController extends Controller
         $order->save();
         return view('admin.dashboard');
     }
+    public function send_email(Request $request,$id){
+        $order=order::find($id);
+        return view('admin.email_info',compact('order'));
+    }
 
+    public function send_user_email(Request $request,$id){
+        
+        $order=order::find($id);
+        $details=[
+            'greeting'=>$request->greeting,
+            'firstline'=>$request->firstline,
+            'body'=>$request->body,
+            'button'=>$request->button,
+            'url'=>$request->url,
+            'lastline'=>$request->lastline,
+        ];
+        Notification::send($order, new SendEmailNotification($details));
+      
+    }
      
 }
